@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:17:14 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/11/23 16:02:36 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:22:11 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	stack_sorted(t_stack_node *a)
 {
 	if (!a)
-		return ;
+		return (0);
 	while (a)
 	{
 		if (a->nbr > a->next->nbr)
@@ -25,13 +25,13 @@ bool	stack_sorted(t_stack_node *a)
 	return (true);
 }
 
-int	stack_len(t_struct_node *a)
+int	stack_len(t_stack_node *a)
 {
 	int	i;
 
 	i = 0;
 	if (!a)
-		return ;
+		return (0);
 	while (a)
 	{
 		i++;
@@ -40,13 +40,13 @@ int	stack_len(t_struct_node *a)
 	return (i);
 }
 
-t_stack_node	find_last(t_stack_node *stack)
+t_stack_node	*find_last(t_stack_node *stack)
 {
 	if (!stack)
-		return ;
+		return (NULL);
 	while (stack)
 	{
-		stack->next
+		stack= stack->next;
 	}
 	return (stack);
 }
