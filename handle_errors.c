@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:25 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/11/29 16:25:23 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:37:34 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,49 @@ int	error_syntax(char *str_n)
 	if (!(str_n))
 		value = 1;
 	if (!(*str_n == '+' || *str_n == '-' || *str_n >= '0' || *str_n <= '9'))
+	{
+		printf("syntax 1\n");
 		value = 1;
-	if (*str_n == '+' || *str_n == '-' && !(str_n[1] >= '0' && str_n[1] <= '9'))
+	}
+	if ((*str_n == '+' || *str_n == '-') && !(str_n[1] >= '0' && str_n[1] <= '9'))
+	{
+		printf("syntax 2\n");
 		value = 1;
-	i = 0;
+	}
+	i = 1;
 	while (str_n[i])
 	{
-		if (!(str_n[i] >= 0 && str_n[i] <= 9))
+		if (!(str_n[i] >= '0' && str_n[i] <= '9'))
 			value = 1;
 		i++;
 	}
 	return (value);
 }
 
-int	error_duplicate(t_stack_node *a, int n)
+int	error_duplicate(t_stack_node **a, int n)
 {
+	t_stack_node	*tmp;
+
+	tmp = *a;
 	if (!(a))
 		return (0);
-	while (a)
+	while (tmp)
 	{
-		if (a->nbr == n)
+		if (tmp->nbr == n)
 			return (1);
-		a = a->next;
+		tmp = tmp->next;
 	}
 	return (0);
 }
 
-void	free_stack(t_stack_node *stack)
+void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*current;
 	t_stack_node	*tmp;
 
 	if (!stack)
 		return ;
-	current = stack;
+	current = *stack;
 	while (current)
 	{
 		tmp = current->next;
@@ -65,7 +74,7 @@ void	free_stack(t_stack_node *stack)
 	stack = NULL;
 }
 
-void	free_error(t_stack_node *stack)
+void	free_error(t_stack_node **stack)
 {
 	free_stack(stack);
 	printf("ERROR =( \n");

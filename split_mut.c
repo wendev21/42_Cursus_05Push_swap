@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:41 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/11/29 15:23:50 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:10:30 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_words(char *str_n, char c)
 	i = 0;
 	while (str_n[i])
 	{
-		if ((str_n[i] != c && str_n[i + 1] == c) || str_n[i + 1] == '\0')
+		if (str_n[i] != c && (str_n[i + 1] == c || str_n[i + 1] == '\0'))
 			words++;
 		i++;
 
@@ -38,12 +38,9 @@ char	*get_next_word(char *str_n, char c)
 
 	i = 0;
 	len = 0;
-	if (!l_po)
-		l_po = 0;
-	else
-		l_po += 1;
+
 	while (str_n[l_po] == c && str_n[l_po + 1] != '\0')
-			i++;
+			l_po++;
 	while (str_n[l_po + len] != 0 && str_n[l_po + len] != c)
 		len++;
 	next_word = malloc(sizeof(char) * len);
@@ -51,6 +48,10 @@ char	*get_next_word(char *str_n, char c)
 		return (NULL);
 	while ((str_n[l_po] != c) && str_n[l_po])
 		next_word[i++] = str_n[l_po++];
+	l_po++;
+	//revisr strlen por ft_strlen
+	if (strlen(str_n) <= l_po)
+		l_po = 0;
 	next_word[i] = '\0';
 	return (next_word);
 }
@@ -67,16 +68,16 @@ char	**split_mut(char *str_n, char c)
 	ptr = malloc(sizeof(char *) * wordcount + 1);
 	if (!ptr)
 		return (NULL);
-	while (wordcount-- > 0)
+	while (--wordcount > 0)
 	{
-		if (i == 0)
+		/*if (i == 0)
 		{
 			ptr[i] = malloc(sizeof(char));
 			if (!ptr[i])
 				return (NULL);
 			ptr[i++][0] = '\0';
 			continue ;
-		}
+		}*/
 		ptr[i++] = get_next_word(str_n, c);
 	}
 	ptr[i] = NULL;
