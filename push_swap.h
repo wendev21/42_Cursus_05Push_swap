@@ -6,13 +6,14 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:08:49 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/11/30 15:11:20 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:41:00 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <unistd.h>
 # include <stdbool.h>
 # include <string.h>
 # include <limits.h>
@@ -48,8 +49,12 @@ void			init_stack_a(t_stack_node **a, char *str_n);
 t_stack_node	*find_last(t_stack_node **stack);
 char			**split_mut(char *str_n, char c);
 bool			stack_sorted(t_stack_node **a);
+int				stack_len(t_stack_node *a);
 //**Commands
-
+void			swap(t_stack_node **stack);
+void			sa(t_stack_node **stack_a, bool print);
+void			sb(t_stack_node **stack_b, bool print);
+void			ss(t_stack_node **stack_a, t_stack_node	**stack_b);
 //**Algorithm
 
 #endif

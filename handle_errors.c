@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:25 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/11/30 14:37:34 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:28:23 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ int	error_duplicate(t_stack_node **a, int n)
 	while (tmp)
 	{
 		if (tmp->nbr == n)
+		{
+			printf("Error Duplicado");
 			return (1);
+		}
 		tmp = tmp->next;
 	}
 	return (0);

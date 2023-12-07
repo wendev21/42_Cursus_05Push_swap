@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:41 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/11/30 16:10:30 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:40:01 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	count_words(char *str_n, char c)
 		i++;
 
 	}
-	return (words + 1);
+	return (words);
 }
 
 char	*get_next_word(char *str_n, char c)
@@ -43,7 +43,7 @@ char	*get_next_word(char *str_n, char c)
 			l_po++;
 	while (str_n[l_po + len] != 0 && str_n[l_po + len] != c)
 		len++;
-	next_word = malloc(sizeof(char) * len);
+	next_word = malloc(sizeof(char) * (len + 1));
 	if (!next_word)
 		return (NULL);
 	while ((str_n[l_po] != c) && str_n[l_po])
@@ -68,36 +68,34 @@ char	**split_mut(char *str_n, char c)
 	ptr = malloc(sizeof(char *) * wordcount + 1);
 	if (!ptr)
 		return (NULL);
-	while (--wordcount > 0)
+	i = 0;
+	while (i < wordcount)
 	{
-		/*if (i == 0)
-		{
-			ptr[i] = malloc(sizeof(char));
-			if (!ptr[i])
-				return (NULL);
-			ptr[i++][0] = '\0';
-			continue ;
-		}*/
 		ptr[i++] = get_next_word(str_n, c);
 	}
 	ptr[i] = NULL;
 
 	return (ptr);
 }
+/*
+int main(int argc, char **argv) {
+    char **result;
+    int j, i;
 
-/*int main()
-{
-	char *str_n = "5 4 78 9 2 5 5";
-	char **arr = split_mut(str_n, ' ');
-	int i;
+    j = 1;
+    while (argc > j) {
+        result = split_mut(argv[j], ' ');
 
-	i = 0;
-	if (!arr)
-		return (1);
-	while (arr[i])
-	{
-		printf("%d  %s\n", (i + 1) , arr[i]);
-		i++;
-	}
-	return (0);
+        i = 0;
+        while (result[i] != NULL) {
+            printf("%d  %s\n", (i + 1), result[i]);
+            free(result[i]);  // Free the memory allocated for each word
+            i++;
+        }
+
+        free(result);  // Free the array of pointers
+        j++;
+    }
+
+    return 0;
 }*/

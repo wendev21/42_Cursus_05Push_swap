@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:16:42 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/11/30 15:50:21 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:40:30 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	init_stack_a(t_stack_node **a, char *str_n)
 	if ((error_duplicate(a, nbr) == 1))
 		free_error(a);
 	else if (nbr < INT_MIN || nbr > INT_MAX)
-		free_error(a);
+		(printf("MAX or MIN error"),free_error(a));
 	else
 		append_node(a, nbr);
 }
