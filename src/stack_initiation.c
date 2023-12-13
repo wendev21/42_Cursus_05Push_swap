@@ -6,11 +6,11 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:16:42 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/11 17:04:22 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/11 18:13:20 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ".../push_swap.h"
+#include "../push_swap.h"
 
 long	ft_atol(char *str_n)
 {

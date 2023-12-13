@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:08:49 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/10 16:32:44 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:25:01 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ void			free_error(t_stack_node **stack);
 void			init_stack_a(t_stack_node **a, char *str_n);
 //**Nodes Initiation
 void			init_a_b(t_stack_node **a, t_stack_node **b);
+void			c_index(t_stack_node **stack);
+void			target_node(t_stack_node **a, t_stack_node **b);
+void			push_cost(t_stack_node **a, t_stack_node **b);
+void			cheapest(t_stack_node **stack);
+void			init_b_a(t_stack_node **b, t_stack_node **a);
+void			move_b_a(t_stack_node **b, t_stack_node **a);
+t_stack_node	*get_cheapest(t_stack_node **stack);
+
 //**Stack Utils
 t_stack_node	*find_last(t_stack_node **stack);
 char			**split_mut(char *str_n, char c);

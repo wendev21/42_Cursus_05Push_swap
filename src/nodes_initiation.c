@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:18:14 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/11 16:59:10 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:51:18 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,49 @@
 
 void	init_a_b(t_stack_node **a, t_stack_node **b)
 {
-	index(*a);
-	index(*b);
-	push_cost(*a, *b);
-	cheapest(*a);
-	target_node(*a, *b);
+	c_index(a);
+	c_index(b);
+	target_node(a, b);
+	push_cost(a, b);
+	cheapest(a);
 }
 
-void	index(t_stack_node *stack)
+void	c_index(t_stack_node **stack)
 {
 	int				median;
 	int				i;
+	t_stack_node	*tmp;
 
 	i = 0;
-	median = stack_len(&stack) / 2;
-	while (stack)
+	tmp = (*stack);
+	median = stack_len(stack) / 2;
+	while (tmp)
 	{
-		stack->index = i;
+		tmp->index = i;
 		if (i <= median)
-			stack->above_median = true;
+			tmp->above_median = true;
 		else
-			stack->above_median = false;
-		stack = stack->next;
+			tmp->above_median = false;
+		tmp = tmp->next;
 		i++;
 	}
 }
 
-void	target_node(t_stack_node *a, t_stack_node *b)
+void	target_node(t_stack_node **a, t_stack_node **b)
 {
 	long			best_match;		
-	t_stack_node	target;
+	t_stack_node	*target;
 	t_stack_node	*tmp;
+	t_stack_node	*aux;;
 
-	while (a)
+	aux = (*a);
+	while (aux)
 	{
 		best_match = LONG_MIN;
-		tmp = *b;
+		tmp = (*b);
 		while (tmp)
 		{
-			if ((tmp->nbr < a->nbr) && (tmp->nbr > best_match))
+			if ((tmp->nbr < aux->nbr) && (tmp->nbr > best_match))
 			{
 				target = tmp;
 				best_match = tmp->nbr;
@@ -60,47 +64,52 @@ void	target_node(t_stack_node *a, t_stack_node *b)
 			tmp = tmp->next;
 		}
 		if (best_match == LONG_MIN)
-			a->target_node = find_max(b);
+			aux->target_node = stack_max(b);
 		else
-			a->target_node = target;
-		a = a->next;
+			aux->target_node = target;
+		aux = aux->next;
 	}
 }
 
-void	push_cost(t_stack_node *a, t_stack_node *b)
+void	push_cost(t_stack_node **a, t_stack_node **b)
 {
-	int	len_a;
-	int	len_b;
+	int				len_a;
+	int				len_b;
+	t_stack_node	*aux;
 
-	len_a = stack_len(&a);
-	len_b = stack_len(&b);
-	while (a)
+
+	len_a = stack_len(a);
+	len_b = stack_len(b);
+	aux = (*a);
+	while (aux)
 	{
-		a->push_cost = a->index;
-		if (!(a->above_median))
-			a->push_cost = (len_a - a->index);
-		if (a->target_node->above_median)
-			a->push_cost += a->target_node->index;
+		aux->push_cost = aux->index;
+		if (!(aux->above_median))
+			aux->push_cost = (len_a - aux->index);
+		if (aux->target_node->above_median)
+			aux->push_cost += aux->target_node->index;
 		else
-			a->push_cost += (len_b - a->target_node->index);
-		a = a->next;
+			aux->push_cost += (len_b - aux->target_node->index);
+		aux = aux->next;
 	}
 }
 
-void	cheapest(t_stack_node *stack)
+void	cheapest(t_stack_node **stack)
 {
 	long			cheap;
 	t_stack_node	*aux;
+	t_stack_node	*tmp;
 
 	cheap = LONG_MAX;
-	while (stack)
+	tmp = (*stack);
+	while (tmp)
 	{
-		if (stack->push_cost < cheap)
+		if (tmp->push_cost < cheap)
 		{
-			cheap = stack->push_cost;
-			aux = stack;
+			cheap = tmp->push_cost;
+			aux = tmp;
 		}
-		stack = stack->next;
+		tmp = tmp->next;
 	}
 	aux->cheapest = true;
 }

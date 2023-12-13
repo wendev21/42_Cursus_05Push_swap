@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:23:15 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/11 16:59:49 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:56:49 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,17 @@ int	main(int argc, char **argv)
 	while (tmp_a)
 	{
 		printf("%d\n", tmp_a->nbr);
+		printf("%d\n", tmp_a->push_cost);
+		printf("%d\n", tmp_a->index);
 		tmp_a = tmp_a->next;
 	}
-	tmp_b = *b;
+	printf("\n");
+		tmp_b = *b;
 	while (tmp_b)
 	{
-		printf("list_b %d\n", tmp_b->nbr);
+		printf("%d\n", tmp_b->nbr);
+		printf("%d\n", tmp_b->push_cost);
+		printf("%d\n", tmp_b->index);
 		tmp_b = tmp_b->next;
 	}
 	printf("\n");

@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:41 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/11 17:04:09 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/11 18:12:22 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ char	**split_mut(char *str_n, char c)
 	char	**ptr;
 	int		i;
 	int		wordcount;
-	int		wordlen;
 
 	wordcount = count_words(str_n, c);
 	if (!wordcount)

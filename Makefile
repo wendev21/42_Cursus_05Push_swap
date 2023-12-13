@@ -6,7 +6,7 @@
 #    By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 11:46:47 by wecorzo-          #+#    #+#              #
-#    Updated: 2023/12/11 16:56:35 by wecorzo-         ###   ########.fr        #
+#    Updated: 2023/12/11 18:14:22 by wecorzo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -24,7 +24,7 @@ PUSHSWAP_SRC		=\
 					 src/split_mut.c \
 					 src/stack_initiation.c \
 					 src/stack_utils.c \
-					 swap.c 
+					 src/swap.c 
 OBJS			= $(PUSHSWAP_SRC:.c=.o)
 
 # Compiler
