@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:41 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/11 18:12:22 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:53:04 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ char	**split_mut(char *str_n, char c)
 
 	wordcount = count_words(str_n, c);
 	if (!wordcount)
-		exit (1);
+	{
+		write(1, "ERROR", 5);
+		exit(1);
+	}
 	ptr = malloc(sizeof(char *) * wordcount + 1);
 	if (!ptr)
 		return (NULL);
@@ -82,6 +85,5 @@ char	**split_mut(char *str_n, char c)
 	{
 		ptr[i++] = get_next_word(str_n, c);
 	}
-	ptr[i] = NULL;
 	return (ptr);
 }

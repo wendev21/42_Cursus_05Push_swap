@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:08:49 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/12 17:25:01 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:03:50 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void			cheapest(t_stack_node **stack);
 void			init_b_a(t_stack_node **b, t_stack_node **a);
 void			move_b_a(t_stack_node **b, t_stack_node **a);
 t_stack_node	*get_cheapest(t_stack_node **stack);
-
+void			pre_mov(t_stack_node **stack, t_stack_node *chepest, char c);
+void			target_node_b(t_stack_node **stack_b, t_stack_node **stack_a);
 //**Stack Utils
 t_stack_node	*find_last(t_stack_node **stack);
 char			**split_mut(char *str_n, char c);
@@ -61,22 +62,18 @@ int				stack_len(t_stack_node **a);
 t_stack_node	*stack_min(t_stack_node **stack);
 t_stack_node	*stack_max(t_stack_node **stack);
 //**Commands
-void			swap(t_stack_node **stack);
 void			sa(t_stack_node **stack_a, bool print);
 void			sb(t_stack_node **stack_b, bool print);
 void			ss(t_stack_node **stack_a, t_stack_node	**stack_b);
 
-void			rotate(t_stack_node **stack);
 void			ra(t_stack_node **stack_a, bool print);
 void			rb(t_stack_node **stack_b, bool print);
 void			rr(t_stack_node **a, t_stack_node **b);
 
-void			reverse_rotate(t_stack_node **stack);
 void			rra(t_stack_node **stack_a, bool print);
 void			rrb(t_stack_node **stack_b, bool print);
 void			rrr(t_stack_node **a, t_stack_node **b);
 
-void			push(t_stack_node **stack_a, t_stack_node **stack_b);
 void			pa(t_stack_node **a, t_stack_node **b, bool print);
 void			pb(t_stack_node **b, t_stack_node **a, bool print);
 void			pp(t_stack_node **a, t_stack_node **b);

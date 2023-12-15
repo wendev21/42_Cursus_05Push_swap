@@ -6,34 +6,30 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:48:09 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/13 16:47:31 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:34:08 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	push(t_stack_node **stack_a, t_stack_node **stack_b)
+static void	push(t_stack_node **dst, t_stack_node **src) 
 {
-	t_stack_node	*tmp;
-
-	if (!(*stack_b))
-		return ;
-	tmp = (*stack_b);
-	(*stack_b) = (*stack_b)->next;
-	if (!(*stack_b))
-		(*stack_b)->prev = NULL;
-	if (!(*stack_a))
-	{
-		(*stack_a) = tmp;
-		tmp->next = NULL;
-	}
-	else
-	{
-		(*stack_a)->prev = tmp;
-		(*stack_a)->prev->next = (*stack_a);
-		(*stack_a) = tmp;
-		tmp->prev = NULL;
-	}
+    t_stack_node *push_node;
+    if (!*src)
+        return;
+    push_node = *src;
+    *src = (*src)->next;
+    if (*src)
+        (*src)->prev = NULL;
+    push_node->prev = NULL;
+    if (!*dst) {
+        *dst = push_node;
+        push_node->next = NULL;
+    } else {
+        push_node->next = *dst;
+        push_node->next->prev = push_node;
+        *dst = push_node;
+    }
 }
 
 void	pa(t_stack_node **a, t_stack_node **b, bool print)

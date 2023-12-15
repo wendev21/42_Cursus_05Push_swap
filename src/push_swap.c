@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:23:15 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/13 15:56:49 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:12:00 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	*b = NULL;
 	j = 1;
 	if (argc == 1 || (argc == 2 && !(argv[1][0])))
-		return (1);
+		return ((write(1, "ERROR\n", 6)),1);
 	else if (argc >= 2)
 	{
 		while (argc > j)
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 			while (result[i] != NULL)
 			{
 				init_stack_a(a, result[i]);
+				free(result[i]);
 				i++;
 			}
 			j++;
@@ -54,24 +55,24 @@ int	main(int argc, char **argv)
 		else
 			sort_stack(a, b);
 	}
-	tmp_a = *a;
+/*	tmp_a = *a;
 	while (tmp_a)
 	{
-		printf("%d\n", tmp_a->nbr);
-		printf("%d\n", tmp_a->push_cost);
-		printf("%d\n", tmp_a->index);
+		printf("nbr :%d\n", tmp_a->nbr);
+//		printf("pushh_cost :%d\n", tmp_a->push_cost);
+//		printf("index :%d\n", tmp_a->index);
 		tmp_a = tmp_a->next;
 	}
 	printf("\n");
 		tmp_b = *b;
 	while (tmp_b)
 	{
-		printf("%d\n", tmp_b->nbr);
-		printf("%d\n", tmp_b->push_cost);
-		printf("%d\n", tmp_b->index);
+		printf("nbr b:%d\n", tmp_b->nbr);
+//		printf("push_cost :%d\n", tmp_b->push_cost);
+//		printf("index :%d\n", tmp_b->index);
 		tmp_b = tmp_b->next;
 	}
-	printf("\n");
+	printf("\n");*/
 	free_stack(a);
 	return (0);
 }

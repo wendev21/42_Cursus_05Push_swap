@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: wecorzo- <wecorzo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:14:20 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/13 16:50:44 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:57:52 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ t_stack_node	*get_cheapest(t_stack_node **stack)
 
 void	pre_mov(t_stack_node **stack, t_stack_node *cheapest, char c)
 {
-	while (!(*stack) == cheapest)
+	while ((*stack) != cheapest)
 	{
 		if (c == 'a')
 		{
-			if ((*stack)->above_median)
+			if (cheapest->above_median)
 				ra(stack, false);
 			else	
 				rra(stack, false);
 		}else if (c == 'b')
 		{	
-			if ((*stack)->above_median)
+			if (cheapest->above_median)
 				rb(stack, false);
 			else	
 				rrb(stack, false);
@@ -42,15 +42,44 @@ void	pre_mov(t_stack_node **stack, t_stack_node *cheapest, char c)
 	}
 }
 
-void	init_b_a(t_stack_node **b, t_stack_node **a)
+void	target_node_b(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	c_index(b);
-	c_index(a);
-	target_nodei_b(a, b); 
+	long			best_match;
+	t_stack_node	*target;
+	t_stack_node	*b;
+	t_stack_node	*a;
+
+	b = (*stack_b);
+	while (b)
+	{
+		best_match = LONG_MAX;
+		a = (*stack_a);
+		while (a)
+		{
+			if(a->nbr > b->nbr && a->nbr < best_match)
+			{
+				target = a;
+				best_match = a->nbr;
+			}
+			a = a->next;
+		}
+		if (best_match ==  LONG_MAX)
+			b->target_node = stack_min(stack_a);
+		else
+			b->target_node = target;
+		b = b->next;
+	}
 }
 
-void	move_b_a(t_stack_node **b, t_stack_node **a)
+void	init_b_a(t_stack_node **a, t_stack_node **b)
 {
-	(void)b;
-	(void)a;
+	c_index(a);
+	c_index(b);
+	target_node_b(a, b); 
+}
+
+void	move_b_a(t_stack_node **a, t_stack_node **b)
+{
+	pre_mov(a, (*b)->target_node, 'a');
+	pa(a, b, false);
 }

@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:17:14 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/11 17:04:59 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:04:38 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,21 @@ t_stack_node	*stack_min(t_stack_node	**stack)
 {
 	long			min;
 	t_stack_node	*min_node;
+	t_stack_node	*tmp;
 
 	min = LONG_MAX;
 	min_node = (*stack);
-	while (*stack)
+	tmp = (*stack);
+	if (!stack)
+		return (0);
+	while (tmp)
 	{
-		if (((*stack)->nbr) < min)
+		if (tmp->nbr < min)
 		{
-			min = (*stack)->nbr;
-			min_node = (*stack);
+			min = tmp->nbr;
+			min_node = (tmp);
 		}
-		(*stack) = (*stack)->next;
+		tmp = tmp->next;
 	}
 	return (min_node);
 }

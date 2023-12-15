@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:25 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/11 16:58:20 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:19:22 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,19 @@
 
 int	error_syntax(char *str_n)
 {
-	int	value;
 	int	i;
 
-	value = 0;
-	if (!(str_n))
-		value = 1;
-	if (!(*str_n == '+' || *str_n == '-' || *str_n >= '0' || *str_n <= '9'))
-	{
-		printf("syntax 1\n");
-		value = 1;
-	}
-	if ((*str_n == '+' || *str_n == '-')
-		&& !(str_n[1] >= '0' && str_n[1] <= '9'))
-	{
-		printf("syntax 2\n");
-		value = 1;
-	}
-	i = 1;
+	i = 0;
+	if (!(str_n || str_n[i] == '\0'))
+		return (write(1, "ERROR\n", 6), 1);
+	i++;
 	while (str_n[i])
 	{
 		if (!(str_n[i] >= '0' && str_n[i] <= '9'))
-			value = 1;
+			return (1);
 		i++;
 	}
-	return (value);
+	return (0);
 }
 
 int	error_duplicate(t_stack_node **a, int n)
