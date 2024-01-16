@@ -6,7 +6,7 @@
 #    By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 11:46:47 by wecorzo-          #+#    #+#              #
-#    Updated: 2023/12/11 18:14:22 by wecorzo-         ###   ########.fr        #
+#    Updated: 2024/01/16 15:22:25 by wecorzo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -24,13 +24,15 @@ PUSHSWAP_SRC		=\
 					 src/split_mut.c \
 					 src/stack_initiation.c \
 					 src/stack_utils.c \
-					 src/swap.c 
+					 src/swap.c \
+					 src/aux.c \
+					 src/aux_lib.c 
 OBJS			= $(PUSHSWAP_SRC:.c=.o)
 
 # Compiler
 CC					=	gcc
 RM					=	rm -f
-CFLAGS				=	-Wall -Werror -Wextra
+CFLAGS				=	-Wall -Werror -Wextra #-fsanitize=address -g3
 
 # Colours
 RED					=	\033[0;31m
@@ -53,7 +55,6 @@ clean:
 			@printf "\n$(BLUE)==> $(RED)Removed Push_swap 🗑️\n$(RESET)"
 
 fclean:		clean
-			@make -C libft fclean
 
 re:			fclean all
 			@printf "$(BLUE)==> $(CYAN)Push_swap recompiled 🔄\n$(RESET)"

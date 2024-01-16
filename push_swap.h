@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:08:49 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/14 17:03:50 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:31:28 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <stdio.h>
-
-//# include "../01Libftt/libft.h"
-//# include "../03ft_printf/ft_printf.h"
 
 typedef struct s_stack_node
 {
@@ -56,7 +53,10 @@ void			pre_mov(t_stack_node **stack, t_stack_node *chepest, char c);
 void			target_node_b(t_stack_node **stack_b, t_stack_node **stack_a);
 //**Stack Utils
 t_stack_node	*find_last(t_stack_node **stack);
-char			**split_mut(char *str_n, char c);
+unsigned int	ft_strlen(const char *str);
+size_t			ft_strlcpy(char *dest, const char *src, size_t dstsize);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			**split_mut(const char *str_n, char c);
 bool			stack_sorted(t_stack_node **a);
 int				stack_len(t_stack_node **a);
 t_stack_node	*stack_min(t_stack_node **stack);

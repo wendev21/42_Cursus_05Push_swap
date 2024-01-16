@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:18:14 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/13 16:51:18 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:27:59 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	target_node(t_stack_node **a, t_stack_node **b)
 	long			best_match;		
 	t_stack_node	*target;
 	t_stack_node	*tmp;
-	t_stack_node	*aux;;
+	t_stack_node	*aux;
 
 	aux = (*a);
 	while (aux)
@@ -76,7 +76,6 @@ void	push_cost(t_stack_node **a, t_stack_node **b)
 	int				len_a;
 	int				len_b;
 	t_stack_node	*aux;
-
 
 	len_a = stack_len(a);
 	len_b = stack_len(b);

@@ -6,84 +6,82 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:41 by wecorzo-          #+#    #+#             */
-/*   Updated: 2023/12/15 17:53:04 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:21:29 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int	ft_strlen(char *str)
+int	ft_countwords(char const *s, char c)
 {
-	int	i;
+	size_t	i;
+	size_t	words;
 
-	if (!str)
-		return (0);
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	count_words(char *str_n, char c)
-{
-	int	words;
-	int	i;
-
 	words = 0;
-	i = 0;
-	while (str_n[i])
+	while (s[i])
 	{
-		if (str_n[i] != c && (str_n[i + 1] == c || str_n[i + 1] == '\0'))
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 			words++;
 		i++;
 	}
 	return (words);
 }
 
-char	*get_next_word(char *str_n, char c)
+int	ft_checkadd(const char *s, size_t i, size_t wordlen)
 {
-	static int	l_po;
-	char		*next_word;
-	int			len;
-	int			i;
-
-	i = 0;
-	len = 0;
-	while (str_n[l_po] == c && str_n[l_po + 1] != '\0')
-		l_po++;
-	while (str_n[l_po + len] != 0 && str_n[l_po + len] != c)
-		len++;
-	next_word = malloc(sizeof(char) * (len + 1));
-	if (!next_word)
-		return (NULL);
-	while ((str_n[l_po] != c) && str_n[l_po])
-		next_word[i++] = str_n[l_po++];
-	l_po++;
-	if (ft_strlen(str_n) <= l_po)
-		l_po = 0;
-	next_word[i] = '\0';
-	return (next_word);
+	if (s[i + wordlen] != '\0')
+		i = wordlen + i + 1;
+	else
+		i = wordlen + i;
+	return (i);
 }
 
-char	**split_mut(char *str_n, char c)
+char	**ft_freeall(char **ptr, size_t i)
+{
+	while (i > 0)
+	{
+		i--;
+		free(ptr[i]);
+	}
+	free (ptr);
+	return (NULL);
+}
+
+size_t	ft_lenword(const char *s, char c, size_t i)
+{
+	size_t	wordlen;
+
+	wordlen = 0;
+	while (s[wordlen + i] != c && s[wordlen + i] != '\0')
+		wordlen++;
+	return (wordlen);
+}
+
+char	**split_mut(const char *s, char c)
 {
 	char	**ptr;
-	int		i;
-	int		wordcount;
+	size_t	i;
+	size_t	wordcount;
+	size_t	wordlen;
 
-	wordcount = count_words(str_n, c);
-	if (!wordcount)
-	{
-		write(1, "ERROR", 5);
-		exit(1);
-	}
-	ptr = malloc(sizeof(char *) * wordcount + 1);
+	ptr = malloc(sizeof(char *) * (ft_countwords(s, c) + 1));
 	if (!ptr)
-		return (NULL);
+		return (ptr = NULL, NULL);
 	i = 0;
-	while (i < wordcount)
+	wordcount = 0;
+	while (s[i])
 	{
-		ptr[i++] = get_next_word(str_n, c);
+		wordlen = ft_lenword(s, c, i);
+		if (s[i] != c)
+		{
+			ptr[wordcount] = ft_substr(s, i, wordlen);
+			if (!ptr[wordcount])
+				return (ft_freeall(ptr, wordcount));
+			wordcount++;
+		}
+		i = ft_checkadd(s, i, wordlen);
 	}
+	ptr[wordcount] = NULL;
 	return (ptr);
 }
